@@ -3,10 +3,12 @@ package com.eca.backend.orderservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@ComponentScan(basePackages = "com.eca.backend.orderservice")
 @EnableMongoRepositories(basePackages = "com.eca.backend.orderservice.repository")
 public class OrderServiceApplication {
 
