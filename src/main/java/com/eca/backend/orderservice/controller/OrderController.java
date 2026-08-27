@@ -18,7 +18,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping({"", "/"})
+    @GetMapping
     public ResponseEntity<List<OrderDocument>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
@@ -35,7 +35,7 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
     }
 
-    @PostMapping({"", "/"})
+    @PostMapping
     public ResponseEntity<OrderDocument> createOrder(@RequestBody OrderDocument order) {
         OrderDocument created = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
