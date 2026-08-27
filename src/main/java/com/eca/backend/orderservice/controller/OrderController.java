@@ -18,24 +18,24 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping({"", "/"})
     public ResponseEntity<List<OrderDocument>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDocument> getOrderById(@PathVariable String id) {
+    public ResponseEntity<OrderDocument> getOrderById(@PathVariable("id") String id) {
         return orderService.getOrderById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<OrderDocument>> getOrdersByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<OrderDocument>> getOrdersByUserId(@PathVariable("userId") Long userId) {
         return ResponseEntity.ok(orderService.getOrdersByUserId(userId));
     }
 
-    @PostMapping
+    @PostMapping({"", "/"})
     public ResponseEntity<OrderDocument> createOrder(@RequestBody OrderDocument order) {
         OrderDocument created = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
@@ -43,7 +43,7 @@ public class OrderController {
 
     @PatchMapping("/{id}/status")
     public ResponseEntity<OrderDocument> updateOrderStatus(
-            @PathVariable String id,
+            @PathVariable("id") String id,
             @RequestParam("status") String status,
             @RequestParam(value = "note", required = false) String note) {
         try {
