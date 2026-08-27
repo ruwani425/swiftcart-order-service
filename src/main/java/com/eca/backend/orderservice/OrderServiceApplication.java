@@ -8,7 +8,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = "com.eca.backend.orderservice")
+@ComponentScan(basePackages = {
+    "com.eca.backend.orderservice.controller",
+    "com.eca.backend.orderservice.service",
+    "com.eca.backend.orderservice.repository",
+    "com.eca.backend.orderservice.config"
+})
 @EnableMongoRepositories(basePackages = "com.eca.backend.orderservice.repository")
 public class OrderServiceApplication {
 
